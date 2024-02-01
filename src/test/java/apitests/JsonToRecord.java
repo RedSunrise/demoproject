@@ -7,6 +7,8 @@ import io.burt.jmespath.JmesPath;
 import io.burt.jmespath.jackson.JacksonRuntime;
 import io.restassured.response.Response;
 
+import java.io.IOException;
+
 public class JsonToRecord {
     static ObjectMapper mapper = new ObjectMapper();
     static JmesPath<JsonNode> jmespath = new JacksonRuntime();

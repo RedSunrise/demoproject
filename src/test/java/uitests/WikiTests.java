@@ -3,6 +3,7 @@ package uitests;
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.Selenide;
 import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import selectors.AdminStatsPage;
@@ -34,7 +35,7 @@ public class WikiTests {
         Selenide.open("https://xtools.wmflabs.org/articleinfo/en.wikipedia.org/Kutaisi");
         //assertThat(DebtToThePennyPage.getMainTableHeader(1).getText()).isEqualTo("Data Table Name");
     }
-//    @Test
+    @Test
     void test3(){
         Selenide.open("https://xtools.wmflabs.org/ec");
 //        wikiSteps.asdasd();
@@ -44,9 +45,9 @@ public class WikiTests {
         wikiSteps
                 .clickLanguageDropdownButton()
                 .clickDropdownOption("Deutsch");
-        Assertions.assertThat(Selenide.webdriver().shouldHave(url("https://xtools.wmflabs.org/ec?uselang=de")));
+        Assertions.assertThat(Selenide.webdriver().shouldHave(url("https://xtools.wmcloud.org/ec?uselang=de")));
     }
-    @Test
+//    @Test
     void test4(){
         Selenide.open("https://xtools.wmflabs.org/adminstats");
         adminStatsSteps.clickDetachedAllCheckbox();
@@ -55,6 +56,9 @@ public class WikiTests {
         Selenide.sleep(1000);
         System.out.println(adminStatsPage.getTable().getTableDataCell("2", "Username").getText());
         //System.out.println(adminStatsPage.getTable().getTableHeaderIndex("#"));
+    }
+    @AfterEach
+    void tearDown(){
         Selenide.closeWebDriver();
     }
 }

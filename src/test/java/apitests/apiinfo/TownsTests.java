@@ -1,8 +1,8 @@
 package apitests.apiinfo;
 
+import apitests.MyArgumentsProvider;
 import apitests.HttpSpecs;
 import apitests.JsonToRecord;
-import apitests.MyArgumentsProvider;
 import apitests.apiinfo.records.ApiInfoQueryRecord;
 import io.restassured.response.Response;
 import org.assertj.core.api.Assertions;
@@ -38,6 +38,7 @@ public class TownsTests {
                 .param("titles", city)
                 .param("format", "json")
                 .when().get().then().log().body().extract().response();
+        System.out.println("SECOND TEST: "+response);
         ApiInfoQueryRecord newJsonNode = JsonToRecord.deserialize(response, "query.pages.[*][0][0]", ApiInfoQueryRecord.class);
         System.out.println(newJsonNode.fullurl());
         Assertions.assertThat(newJsonNode).hasNoNullFieldsOrProperties();
@@ -52,6 +53,7 @@ public class TownsTests {
                 .param("titles", city)
                 .param("format", "json")
                 .when().get().then().log().body().extract().response();
+        System.out.println("THIRD TEST: "+response);
         ApiInfoQueryRecord newJsonNode = JsonToRecord.deserialize(response, "query.pages.[*][0][0]", ApiInfoQueryRecord.class);
         System.out.println(newJsonNode.title());
     }

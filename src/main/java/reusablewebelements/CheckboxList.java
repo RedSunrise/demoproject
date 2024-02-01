@@ -6,13 +6,14 @@ import com.codeborne.selenide.SelenideElement;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Objects;
 
 public class CheckboxList {
-    private SelenideElement basicElement;
-    private ElementsCollection optionsElementsList;
-    private String detachedAllCheckboxRelativeXpath;
-    private String checkboxRelativeXPath;
-    private String checkboxAttributeName;
+    private final SelenideElement basicElement;
+    private final ElementsCollection optionsElementsList;
+    private final String detachedAllCheckboxRelativeXpath;
+    private final String checkboxRelativeXPath;
+    private final String checkboxAttributeName;
     public SelenideElement getOption(String optionName){
         return optionsElementsList.findBy(Condition.text(optionName));
     }
@@ -37,14 +38,10 @@ public class CheckboxList {
         this.detachedAllCheckboxRelativeXpath = builder.detachedAllCheckboxRelativeXpath;
         this.checkboxRelativeXPath = builder.checkboxRelativeXPath;
         this.checkboxAttributeName = builder.checkboxAttributeName;
-        if(builder.optionsListRelativeXPath != null) {
-            this.optionsElementsList = basicElement.$$x(builder.optionsListRelativeXPath);
-        } else {
-            this.optionsElementsList = basicElement.$$x("./child::*/*");
-        }
+        this.optionsElementsList = basicElement.$$x(Objects.requireNonNullElse(builder.optionsListRelativeXPath, "./child::*/*"));
     }
     public static class CheckboxListBuilder {
-        private SelenideElement basicElement;
+        private final SelenideElement basicElement;
         private String optionsListRelativeXPath;
         private String detachedAllCheckboxRelativeXpath;
         private String checkboxRelativeXPath;
