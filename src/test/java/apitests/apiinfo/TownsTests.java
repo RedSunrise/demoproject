@@ -12,7 +12,7 @@ import org.junit.jupiter.params.provider.ArgumentsSource;
 import static io.restassured.RestAssured.given;
 
 public class TownsTests {
-    //randomComment2
+    //randomComment3
     @ParameterizedTest
     @ArgumentsSource(MyArgumentsProvider.class)
     void url(String city, Integer pageId) {
